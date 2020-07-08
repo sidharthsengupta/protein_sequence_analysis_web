@@ -1,0 +1,593 @@
+<!-- ------------------------------------------------------------------------------------------------------------- 
+    
+    Homepage HTML File
+    Sidharth Sengupta
+    CS290 Project
+    Many elements were taken from W3 Schools/Boostrap Documentation and then modified by me.
+    Please widen your window to fit this comment block for optimal viewing.
+
+-------------------------------------------------------------------------------------------------------------   -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Home</title>
+ 	<meta charset="utf-8">
+
+	<!-- Used to set width of elements in context with device screen -->
+	<!-- Element needs to have "container" class -->
+ 	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	
+	<!-- Necessary for Bootstrap elements -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- My javascript file -->
+	<script type="text/javascript" src="home.js"></script>
+ 
+	<!-- Styling for the carousel -->
+	<!-- Ideally I should probably have made a seperate file. As I learned different styling
+	elements as I was adding stuff, and as a result most styling is in the element tag. -->
+	<style>
+	    /* This is to make all the pictures the same height */
+	    .item img {
+  		height:400px;
+  		max-height:400px;
+	  	width:auto;
+		margin:0 auto;
+		overflow:hidden;
+	    }
+	    /* Darkens the carousel controls so you can see it on white background */
+	    .carousel-control.left, .carousel-control.right {
+    		background-image:none;
+	   	color:#ccc1c1;
+	    }
+	    /* Darkens indicators so you can see it on white background */
+	    .carousel-indicators li{
+        	background-color:#e5e0e0;
+	 	border:1px solid #aaa0a0;
+	    }
+	    /* Darkens active indicator so it is visible in relation to other indicators */
+	    .carousel-indicators li.active {
+    		background-color:#ada6a6;
+		border:1px solid #686060;
+	    }
+	</style>
+    </head> 
+    <body>
+	<!-- Navbar -->    
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  	    <div class="container-fluid">
+   	    	<div class="navbar-header">
+      		    <a class="navbar-brand" href="home.html">Home</a>
+    		</div>
+    		<ul class="nav navbar-nav">
+      		    <li><a href="composition.html">Essential Characterization</a></li>
+      		    <li><a href="HASP.html">Hydrophobicity/Sorting</a></li>
+      		    <li><a href="SSP.html">Helix/Sheet Prediction</a></li>
+    		</ul>
+  	    </div>
+	</nav>	
+	
+	<!-- Container for carousel -->
+	<div class="container">
+	    
+	    <!-- Line breaks to position below navbar -->
+	    <br>
+	    <br>
+	    <br>
+	    <br>
+ 
+	    <!-- Carousel of proteins -->
+	    <!-- Slides pic every 7.5 seconds. Pauses animation on mouseover -->
+ 	    <div id="proteins" class="carousel slide" data-ride="carousel" data-interval="7500" data-pause="hover">
+    	        
+		<!-- Indicators -->
+    		<ol class="carousel-indicators">
+                    <li data-target="#proteins" data-slide-to="0" class="active"></li>
+                    <li data-target="#proteins" data-slide-to="1"></li>
+                    <li data-target="#proteins" data-slide-to="2"></li>
+                    <li data-target="#proteins" data-slide-to="3"></li>
+                    <li data-target="#proteins" data-slide-to="4"></li>
+		    <li data-target="#proteins" data-slide-to="5"></li>
+		    <li data-target="#proteins" data-slide-to="6"></li>
+		    <li data-target="#proteins" data-slide-to="7"></li>
+ 	            <li data-target="#proteins" data-slide-to="8"></li>
+    		</ol>
+
+    		<!-- Wrapper for slides. Contains picture elements for carousel -->
+    		<div class="carousel-inner" role="listbox">
+		    <div class="item active">
+           		<img class="img-fluid" src="protPics/myc.png" alt="Myc">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="mycButton" data-toggle="modal" 
+				data-target="#mycModal" style="float:right;">Myc</button>
+			</div>
+      		    </div>
+      		    <div class="item">
+        		<img class="img-fluid" src="protPics/p53.png" alt="p53">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="p53Button" data-toggle="modal" 
+				data-target="#p53Modal" style="float:right;">p53</button>
+			</div>
+     		    </div>
+		    <div class="item">
+        		<img class="img-fluid" src="protPics/atpSynthase.png" alt="ATP Synthase">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="atpSynthaseBUtton" 
+				data-toggle="modal" data-target="#atpSynModal" style="float:right;">
+				ATP Synthase</button>
+			</div>
+      		    </div>
+       			<div class="item">
+        		<img class="img-fluid" src="protPics/actin.png" alt="Actin">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="actinButton" data-toggle="modal" 
+				data-target="#actinModal" style="float:right;">Actin</button>
+			</div>
+      		    </div>
+	 		<div class="item">
+        		<img class="img-fluid" src="protPics/hif1a.png" alt="Hif1-a">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="hif1aButton" data-toggle="modal" 
+				data-target="#hif1aModal" style="float:right;">HIF1-a</button>
+			</div>
+      		    </div>
+	 	    <div class="item">
+        		<img class="img-fluid" src="protPics/hemoglobin.png" alt="Hemoglobin">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="hemoglobinButton" 
+				data-toggle="modal" data-target="#hgbModal" style="float:right;">
+				Hemoglobin</button>
+			</div>
+      		    </div>
+	 	    <div class="item">
+        		<img class="img-fluid" src="protPics/hsp70.jpg" alt="Hsp70">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="hsp70Button" data-toggle="modal" 
+				data-target="#hsp70Modal" style="float:right;">Heat Shock Protein 70</button>
+			</div>
+     		    </div>
+	 	    <div class="item">
+        		<img class="img-fluid" src="protPics/dnapol.png" alt="DNA Polymerase">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="dnaPolButton" data-toggle="modal" 
+				data-target="#dnaPolModal" style="float:right;">DNA Polymerase</button>
+			</div>
+      		   </div>
+	 	   <div class="item">
+        		<img class="img-fluid" src="protPics/cftr.png" alt="CFTR">
+			<div class="carousel-caption">
+			<button type="button" class="btn btn-default btn-lg" id="cftrButton" data-toggle="modal" 
+				data-target="#cftrModal" style="float:right;">CFTR</button>
+			</div>
+      		   </div>
+		</div>
+
+    		<!-- Left and right controls -->
+    		<a class="left carousel-control" href="#proteins" data-slide="prev">
+      		    <span class="glyphicon glyphicon-chevron-left"></span>
+      		    <span class="sr-only">Previous</span>
+    		</a>
+    		<a class="right carousel-control" href="#proteins" data-slide="next">
+      		    <span class="glyphicon glyphicon-chevron-right"></span>
+                    <span class="sr-only">Next</span>
+    		</a>
+	    </div>	
+	
+	</div>
+	
+	<!-- Title text with custom line spacing -->
+	<div class="container" style="line-height: 1.2;">
+	    <br>
+	    <b><font style="font-size:50px">
+	    This site contains some simple predictive tools that utilize amino acid sequence
+	    </font> 
+	</div>
+
+	<!-- Normal text -->
+	<div class="container">
+	    <font style="font-size:20px">
+	    <br>	
+	    Look through and click on the name of a protein above to get its sequence which you can use with the 
+	    tools linked in the navigation bar at the top.If you have a protein in mind you can go to the 
+	    <a target="_blank" href="http://www.rcsb.org/">Protein Data Bank</a> or 
+	    <a target="_blank" href="http://www.uniprot.org/">Uniprot</a> 
+	    to find its sequence. Please only copy text that contains the sequence in 1-letter code. You can use 
+	    the included clean button to remove spaces and line breaks before analyzing the sequence. 
+	    <br><br>
+	    These services are not intended for professional or academic use. As outlined in the methodologies, 
+	    most algorithms are simplified emulations of professional tools. For questions and concerns, please 
+	    contact sengupsi@oregonstate.edu.
+	    </font>
+	    </b>
+	</div>
+
+	<!-- Empty buffer at bottom of page -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+
+	<!-- Modal Elements for each protein. Sorry for sequence formatting, needs to be on one line -->
+	<!-- to keep space/line break free -->
+
+	<!-- Myc Modal -->
+	<div id="mycModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Myc</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Transcriptional regulator that is involved in a variety of cellular functions. Mutated
+		    forms have been implicated in carcinogenesis. One of the original factors that was used
+		    to restore pluripotency in somatic cells. 
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="mycSeq">Sequence:</label>
+      			<textarea class="form-control" rows="5" id="mycSeq" sytle="overflow:scroll">MPLNVSFTNRNYDLDYDSVQPYFYCDEEENFYQQQQQSELQPPAPSEDIWKKFELLPTPPLSPSRRSGLCSPSYVAVTPFSLRGDNDGGGGSFSTADQLEMVTELLGGDMVNQSFICDPDDETFIKNIIIQDCMWSGFSAAAKLVSEKLASYQAARKDSGSPNPARGHSVCSTSSLYLQDLSAAASECIDPSVVFPYPLNDSSSPKSCASQDSSAFSPSSDSLLSSTESSPQGSPEPLVLHEETPPTTSSDSEEEQEDEEEIDVVSVEKRQAPGKRSESGSPSAGGHSKPPHSPLVLKRCHVSTHQHNYAAPPSTRKDYPAAKRVKLDSVRVLRQISNNRKCTSPRSSDTEENVKRRTHNVLERQRRNELKRSFFALRDQIPELENNEKAPKVVILKKATAYILSVQAEEQKLISEEDLLRKRREQLKHKLEQLRNSCA</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:C-Myc-DNA_complex.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/Myc" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="mycCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- p53 Modal -->
+	<div id="p53Modal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Tumor Supressor p53</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Essential tumor supressor gene that repairs DNA damage. It has been described as the "guardian
+		    of the genome" for its function in preventing cancer-causing mutations.
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="p53Seq">Sequence:</label>
+      			<textarea class="form-control" rows="5" id="p53Seq" sytle="overflow:scroll">MEEPQSDPSVEPPLSQETFSDLWKLLPENNVLSPLPSQAMDDLMLSPDDIEQWFTEDPGPDEAPRMPEAAPPVAPAPAAPTPAAPAPAPSWPLSSSVPSQKTYQGSYGFRLGFLHSGTAKSVTCTYSPALNKMFCQLAKTCPVQLWVDSTPPPGTRVRAMAIYKQSQHMTEVVRRCPHHERCSDSDGLAPPQHLIRVEGNLRVEYLDDRNTFRHSVVVPYEPPEVGSDCTTIHYNYMCNSSCMGGMNRRPILTIITLEDSSGNLLGRNSFEVRVCACPGRDRRTEEENLRKKGEPHHELPPGSTKRALPNNTSSSPQPKKKPLDGEYFTLQIRGRERFEMFRELNEALELKDAQAGKEPGGSRAHSSHLKSKKGQSTSRHKKLMFKTEGPDSD</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:P53.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/P53" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="p53Copy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- ATP Synthase Modal -->
+	<div id="atpSynModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">ATP Synthase</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    A molecular machine that uses the electrochemical gradient created by the electron 
+		    transport chain to generate cellular energy (ATP). 
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="atpSynSeq">Sequence (Alpha Subunit):</label>
+      			<textarea class="form-control" rows="5" id="atpSynSeq" sytle="overflow:scroll">MLSVRVAAAVVRALPRRAGLVSRNALGSSFIAARNFHASNTHLQKTGTAEMSSILEERILGADTSVDLEETGRVLSIGDGIARVHGLRNVQAEEMVEFSSGLKGMSLNLEPDNVGVVVFGNDKLIKEGDIVKRTGAIVDVPVGEELLGRVVDALGNAIDGKGPIGSKTRRRVGLKAPGIIPRISVREPMQTGIKAVDSLVPIGRGQRELIIGDRQTGKTSIAIDTIINQKRFNDGSDEKKKLYCIYVAIGQKRSTVAQLVKRLTDADAMKYTIVVSATASDAAPLQYLAPYSGCSMGEYFRDNGKHALIIYDDLSKQAVAYRQMSLLLRRPPGREAYPGDVFYLHSRLLERAAKMNDAFGGGSLTALPVIETQAGDVSAYIPTNVISITDGQIFLETELFYKGIRPAINVGLSVSRVGSAAQTRAMKQVAGTMKLELAQYREVAAFAQFGSDLDAATQQLLSRGVRLTELLKQGQYSPMAIEEQVAVIYAGVRGYLDKLEPSKITKFENAFLSHVVSQHQALLGTIRADGKISEQSDAKLKEIVTNFLAGFEA</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:Fo_subunit_of_ATPase_C1._Picture_Created_in_PyMol_.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/ATP_synthase" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="atpSynCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- Actin Modal -->
+	<div id="actinModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Actin</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    A large variety of proteins that are the building blocks of a cell's cytoskeleton as well as 
+		    muscle tissue. </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="actinSeq">Sequence (Beta-Actin):</label>
+      			<textarea class="form-control" rows="5" id="actinSeq" sytle="overflow:scroll">MDDDIAALVVDNGSGMCKAGFAGDDAPRAVFPSIVGRPRHQGVMVGMGQKDSYVGDEAQSKRGILTLKYPIEHGIVTNWDDMEKIWHHTFYNELRVAPEEHPVLLTEAPLNPKANREKMTQIMFETFNTPAMYVAIQAVLSLYASGRTTGIVMDSGDGVTHTVPIYEGYALPHAILRLDLAGRDLTDYLMKILTERGYSFTTTAEREIVRDIKEKLCYVALDFEQEMATAASSSSLEKSYELPDGQVITIGNERFRCPEALFQPSFLGMESCGIHETTFNSIMKCDVDIRKDLYANTVLSGGTTMYPGIADRMQKEITALAPSTMKIKIIAPPERKYSVWIGGSILASLSTFQQMWISKQEYDESGPSIVHRKCF</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:Actin_with_ADP_highlighted.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/Actin" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="actinCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- Hif1a Modal -->
+	<div id="hif1aModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Hypoxia-Inducible Factor 1-alpha</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Transcriptional regulator during periods of hypoxia. Activates and suppresses genes in order 
+		    to increase oxygen delivery and ensure cell survival.</p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="atpSynSeq">Sequence:</label>
+      			<textarea class="form-control" rows="5" id="hif1aSeq" sytle="overflow:scroll">MEGAGGANDKKKISSERRKEKSRDAARSRRSKESEVFYELAHQLPLPHNVSSHLDKASVMRLTISYLRVRKLLDAGDLDIEDDMKAQMNCFYLKALDGFVMVLTDDGDMIYISDNVNKYMGLTQFELTGHSVFDFTHPCDHEEMREMLTHRNGLVKKGKEQNTQRSFFLRMKCTLTSRGRTMNIKSATWKVLHCTGHIHVYDTNSNQPQCGYKKPPMTCLVLICEPIPHPSNIEIPLDSKTFLSRHSLDMKFSYCDERITELMGYEPEELLGRSIYEYYHALDSDHLTKTHHDMFTKGQVTTGQYRMLAKRGGYVWVETQATVIYNTKNSQPQCIVCVNYVVSGIIQHDLIFSLQQTECVLKPVESSDMKMTQLFTKVESEDTSSLFDKLKKEPDALTLLAPAAGDTIISLDFGSNDTETDDQQLEEVPLYNDVMLPSPNEKLQNINLAMSPLPTAETPKPLRSSADPALNQEVALKLEPNPESLELSFTMPQIQDQTPSPSDGSTRQSSPEPNSPSEYCFYVDSDMVNEFKLELVEKLFAEDTEAKNPFSTQDTDLDLEMLAPYIPMDDDFQLRSFDQLSPLESSSASPESASPQSTVTVFQQTQIQEPTANATTTTATTDELKTVTKDRMEDIKILIASPSPTHIHKETTSATSSPYRDTQSRTASPNRAGKGVIEQTEKSHPRSPNVLSVALSQRTTVPEEELNPKILALQNAQRKRKMEHDGSLFQAVGIGTLLQQPDDHAATTSLSWKRVKGCKSSEQNGMEQKTIILIPSDLACRLLGQSMDESGLPQLTSYDCEVNAPIQGSRNLLQGEELLRALDQVN</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:Protein_HIF1A_PDB_1h2k.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/HIF1A" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="hif1aCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- Hemoglobin Modal -->
+	<div id="hgbModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Hemoglobin</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Metalloprotein that complexes with iron in order to bind oxygen and transport it
+		    throughout the body. 
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="hgbSeq">Sequence (Alpha Subunit):</label>
+      			<textarea class="form-control" rows="5" id="hgbSeq" sytle="overflow:scroll">MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:1GZX_Haemoglobin.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/Hemoglobin" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="hgbCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- HSP70 Modal -->
+	<div id="hsp70Modal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Heat Shock Protein 70</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Member of a class of proteins that help fold proteins into their final forms and 
+		    regulate transcription in response to stressful cellular events.
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="hsp70Seq">Sequence:</label>
+      			<textarea class="form-control" rows="5" id="hsp70Seq" sytle="overflow:scroll">MAKAAAIGIDLGTTYSCVGVFQHGKVEIIANDQGNRTTPSYVAFTDTERLIGDAAKNQVALNPQNTVFDAKRLIGRKFGDPVVQSDMKHWPFQVINDGDKPKVQVSYKGETKAFYPEEISSMVLTKMKEIAEAYLGYPVTNAVITVPAYFNDSQRQATKDAGVIAGLNVLRIINEPTAAAIAYGLDRTGKGERNVLIFDLGGGTFDVSILTIDDGIFEVKATAGDTHLGGEDFDNRLVNHFVEEFKRKHKKDISQNKRAVRRLRTACERAKRTLSSSTQASLEIDSLFEGIDFYTSITRARFEELCSDLFRSTLEPVEKALRDAKLDKAQIHDLVLVGGSTRIPKVQKLLQDFFNGRDLNKSINPDEAVAYGAAVQAAILMGDKSENVQDLLLLDVAPLSLGLETAGGVMTALIKRNSTIPTKQTQIFTTYSDNQPGVLIQVYEGERAMTKDNNLLGRFELSGIPPAPRGVPQIEVTFDIDANGILNVTATDKSTGKANKITITNDKGRLSKEEIERMVQEAEKYKAEDEVQRERVSAKNALESYAFNMKSAVEDEGLKGKISEADKKKVLDKCQEVISWLDANTLAEKDEFEHKRKELEQVCNPIISGLYQGAGGPGPGGFGAQGPKGGSGSGPTIEEVD</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:PDB_3hsc_EBI.jpg" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/Hsp70" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="hsp70Copy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- DNA Polymerase Modal -->
+	<div id="dnaPolModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">DNA Polymerase</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    An essential member of the DNA replication process. Catalyzes the synthesis of new DNA from an
+		    existing strand. Some forms can also correct mistakes in replication. </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="dnaPolSeq">Sequence (Delta Subunit):</label>
+      			<textarea class="form-control" rows="5" id="dnaPolSeq" sytle="overflow:scroll">MADQLYLENIDEFVTDQNKIVTYKWLSYTLGVHVNQAKQMLYDYVERKRKENSGAQLHVTYLVSGSLIQNGHSCHKVAVVREDKLEAVKSKLAVTASIHVYSIQKAMLKDSGPLFNTDYDILKSNLQNCSKFSAIQCAAAVPRAPAESSSSSKKFEQSHLHMSSETQANNELTTNGHGPPASKQVSQQPKGIMGMFASKAAAKTQETNKETKTEAKEVTNASAAGNKAPGKGNMMSNFFGKAAMNKFKVNLDSEQAVKEEKIVEQPTVSVTEPKLATPAGLKKSSKKAEPVKVLQKEKKRGKRVALSDDETKETENMRKKRRRIKLPESDSSEDEVFPDSPGAYEAESPSPPPPPSPPLEPVPKTEPEPPSVKSSSGENKRKRKRVLKSKTYLDGEGCIVTEKVYESESCTDSEEELNMKTSSVHRPPAMTVKKEPREERKGPKKGTAALGKANRQVSITGFFQRK</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:DNA_polymerase.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/DNA_polymerase" 
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="dnaPolCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+
+	<!-- CFTR Modal -->
+	<div id="cftrModal" class="modal fade" role="dialog">
+  	    <div class="modal-dialog">
+    	    	<div class="modal-content">
+
+		<!-- Header: Name and close button -->
+      		<div class="modal-header">
+        	    <button type="button" class="close" data-dismiss="modal">&times;</button>
+        	    <h3 class="modal-title">Cystic Fibrosis Transmembrane Conductance Regulator</h3>
+      		</div>
+      		
+		<!-- Body: Description and sequence -->
+		<div class="modal-body">
+		    <!-- Description -->
+		    <p>
+		    Ion channel that facilitates the movement of ions and water into and out of cells. Mutated 
+		    forms can cause cystic fibrosis, as airways are not able to produce normal mucus. 
+		    </p>
+		    <!-- Sequence -->
+		    <form>
+    			<div class="form-group">
+      			<label for="cftrSeq">Sequence:</label>
+      			<textarea class="form-control" rows="5" id="cftrSeq" sytle="overflow:scroll">MQRSPLEKASVVSKLFFSWTRPILRKGYRQRLELSDIYQIPSVDSADNLSEKLEREWDRELASKKNPKLINALRRCFFWRFMFYGIFLYLGEVTKAVQPLLLGRIIASYDPDNKEERSIAIYLGIGLCLLFIVRTLLLHPAIFGLHHIGMQMRIAMFSLIYKKTLKLSSRVLDKISIGQLVSLLSNNLNKFDEGLALAHFVWIAPLQVALLMGLIWELLQASAFCGLGFLIVLALFQAGLGRMMMKYRDQRAGKISERLVITSEMIENIQSVKAYCWEEAMEKMIENLRQTELKLTRKAAYVRYFNSSAFFFSGFFVVFLSVLPYALIKGIILRKIFTTISFCIVLRMAVTRQFPWAVQTWYDSLGAINKIQDFLQKQEYKTLEYNLTTTEVVMENVTAFWEEGFGELFEKAKQNNNNRKTSNGDDSLFFSNFSLLGTPVLKDINFKIERGQLLAVAGSTGAGKTSLLMVIMGELEPSEGKIKHSGRISFCSQFSWIMPGTIKENIIFGVSYDEYRYRSVIKACQLEEDISKFAEKDNIVLGEGGITLSGGQRARISLARAVYKDADLYLLDSPFGYLDVLTEKEIFESCVCKLMANKTRILVTSKMEHLKKADKILILHEGSSYFYGTFSELQNLQPDFSSKLMGCDSFDQFSAERRNSILTETLHRFSLEGDAPVSWTETKKQSFKQTGEFGEKRKNSILNPINSIRKFSIVQKTPLQMNGIEEDSDEPLERRLSLVPDSEQGEAILPRISVISTGPTLQARRRQSVLNLMTHSVNQGQNIHRKTTASTRKVSLAPQANLTELDIYSRRLSQETGLEISEEINEEDLKECFFDDMESIPAVTTWNTYLRYITVHKSLIFVLIWCLVIFLAEVAASLVVLWLLGNTPLQDKGNSTHSRNNSYAVIITSTSSYYVFYIYVGVADTLLAMGFFRGLPLVHTLITVSKILHHKMLHSVLQAPMSTLNTLKAGGILNRFSKDIAILDDLLPLTIFDFIQLLLIVIGAIAVVAVLQPYIFVATVPVIVAFIMLRAYFLQTSQQLKQLESEGRSPIFTHLVTSLKGLWTLRAFGRQPYFETLFHKALNLHTANWFLYLSTLRWFQMRIEMIFVIFFIAVTFISILTTGEGEGRVGIILTLAMNIMSTLQWAVNSSIDVDSLMRSVSRVFKFIDMPTEGKPTKSTKPYKNGQLSKVMIIENSHVKKDDIWPSGGQMTVKDLTAKYTEGGNAILENISFSISPGQRVGLLGRTGSGKSTLLSAFLRLLNTEGEIQIDGVSWDSITLQQWRKAFGVIPQKVFIFSGTFRKNLDPYEQWSDQEIWKVADEVGLRSVIEQFPGKLDFVLVDGGCVLSHGHKQLMCLARSVLSKAKILLLDEPSAHLDPVTYQIIRRTLKQAFADCTVILCEHRIEAMLECQQFLVIEENKVRQYDSIQKLLNERSLFRQAISPSDRVKLFPHRNSSKCKSKPQIAALKEETEEEVQDTRL</textarea>
+    			</div>
+  		    </form>
+      		</div>
+      		
+		<!-- Footer: Link to wiki, image source, button to copy sequence -->
+		<div class="modal-footer">
+		    <div class="btn-group" style="float:left;">
+			<a href="https://commons.wikimedia.org/wiki/File:Protein_CFTR_PDB_1xmi.png" 
+      			   target="_blank" class="btn btn-default" role="button">Image Source</a>
+			<a href="https://en.wikipedia.org/wiki/Cystic_fibrosis_transmembrane_conductance_regulator"
+      			   target="_blank" class="btn btn-default" role="button">Learn More</a>
+		    </div>
+		    <button type="button" id="cftrCopy" class="btn btn-success" style="float:right"
+			    >Copy Sequence</button>
+      		</div>
+           	</div>
+  	    </div>
+	</div>
+    </body>
+</html>

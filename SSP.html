@@ -1,0 +1,152 @@
+<!-- ------------------------------------------------------------------------------------------------------------- 
+    
+    Secondary Structure Prediction HTML File
+    Sidharth Sengupta
+    CS290 Project
+    This page contains the elements that will direct a user to enter a sequence and then plot any predicted alpha
+    helices or beta sheets.
+    Many elements were taken from W3 Schools/Boostrap Documentation and then modified by me.
+    Please widen your window to fit this comment block for optimal viewing.
+
+-------------------------------------------------------------------------------------------------------------   -->
+
+<!DOCTYPE html>
+<html>
+     <head>
+	<title>Helix/Sheet Prediction</title>
+ 	<meta charset="utf-8">
+ 
+	<!-- Used to set width of elements in context with device screen -->
+	<!-- Element needs to have "container" class -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	
+	<!-- Necessary for Bootstrap elements -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- Necessary for CanvasJS Chart elements -->
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+
+	<!-- My javascript file -->
+	<script type="text/javascript" src = "SSP.js"></script>
+	
+	<!-- Styling for the graph and table-->
+	<!-- Ideally I should probably have made a seperate file. As I learned different styling
+	elements as I was adding stuff, and as a result most styling is in the element tag. -->
+	<style>
+	    /* All of the following elements are for styling the loader circle */
+	    .loader {
+  	    	border:5px solid #f3f3f3;
+  	    	border-radius: 50%;
+  	    	border-top: 5px solid #6f737a;
+  	    	width: 50px;
+  	    	height: 50px;
+ 	    	float: center;
+  	    -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  	    	animation: spin 1.5s linear infinite;
+	    }
+	    /* Safari */
+	    @-webkit-keyframes spin {
+  	    	0% { -webkit-transform: rotate(0deg); }
+  	    	100% { -webkit-transform: rotate(360deg); }
+	    }
+	    @keyframes spin {
+  	    	0% { transform: rotate(0deg); }
+  	    	100% { transform: rotate(360deg); }
+	    }
+	</style>
+    </head>
+    <body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  	    <div class="container-fluid">
+   		<div class="navbar-header">
+  		    <a class="navbar-brand" href="home.html">Home</a>
+    		</div>
+    		<ul class="nav navbar-nav">
+      		    <li><a href="composition.html">Essential Characterization</a></li>
+      		    <li><a href="HASP.html">Hydrophobicity/Sorting</a></li>
+      		    <li><a href="SSP.html">Helix/Sheet Prediction</a></li>
+    		</ul>
+  	    </div>
+	</nav>
+
+	<!-- Container for description and instructions -->
+	<div class="container">
+	    
+	    <!-- Line breaks to position below navbar -->
+	    <br>
+	    <br>
+ 	    <br>
+ 	    <br>
+	    <br>
+
+	    <!-- Title -->
+	    <b><font style="font-size:27px;">
+	    Helical and Sheet Secondary Structure Prediction
+	    </font>
+	    <br>
+	    <br>
+
+	    <!-- Text content -->
+	    <font style="font-size:20px">
+	    This page will graph any predicted alpha helices or beta sheets. It is possible for predicted areas 
+	    to overlap as my simplified implementation does not compare local alpha/beta probabilites and 
+	    supersede one element. The functionality is based on the
+	    <a target="_blank" href="http://www.biogem.org/tool/chou-fasman/index.php">
+		     CFSSP server</a>.
+	    <br>
+	    <br>
+	    <font style="color:#3a6b46;">Methodology: </font>
+	    This page implements a simplified version of the Chou-Fasman algorithm. The CFSSP server provides a 
+	    description of the algorithm (page 16-17) which is available to download 
+	    <a href="CFSSP.pdf" download>here</a>.
+	    Both alpha helix and beta sheet prediction involve locating a nucleating region and extending the 
+	    region until unfavorable segments are encountered. This site does not consider or predict beta turn 
+	    regions.
+	    <br>
+	    <br>
+	    <font style="color:#3a6b46;">Usage: </font>
+	    Paste your sequence into the area below. If your sequence contains spaces or line breaks, please use 
+	    the clean button to tidy your sequence before analyzing. Please allow up to five minutes for data to 
+	    generate - especially for sequences longer than 500 residues. If your protein is longer than 200 
+	    residues, the graph will display the first 200 residues and you can use the controls at the top 
+	    right to move along the protein or reset. To zoom in on an area, select the area of interest on the 
+	    graph.
+	    </font></b>
+	</div>
+
+	<!-- Container for sequence input -->
+	<div class="container">
+	    <br>
+	    <form>
+    	        <div class="form-group">
+     		<label style="font-size:18px" for="comment">Enter Sequence: </label>
+		<textarea class="form-control" rows="5" id="sequence"></textarea>
+		<div class="btn-group" style="float:right; margin-top:1%">
+		    <button type="button" id ="cleanButton" class="btn btn-info">Clean</button>
+		    <button type="button" id ="analyzeButton" class="btn btn-primary">
+			    Analyze Sequence</button>
+		</div>
+		<br>
+
+		<!-- Loading circle. Initially hidden -->
+		<div class="container loader" id="loader" style="visibility:hidden"></div>
+   	        </div>
+ 	    </form>
+	</div>
+	<br>
+
+	<!-- Container for chart -->
+	<div class="container" id="chartContainer" style="height:400px;"></div>
+
+	<!-- Empty buffer at bottom of page -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    </body>
+</html>

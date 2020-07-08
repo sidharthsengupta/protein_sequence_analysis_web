@@ -1,0 +1,182 @@
+<!-- ------------------------------------------------------------------------------------------------------------- 
+    
+    Hydrophobic Analysis and Sorting Prediction HTML File
+    Sidharth Sengupta
+    CS290 Project
+    This page contains the elements that will direct a user to enter a sequence and then plot of hydrophobcity 
+    scores and any predicted sorting signals.
+    Many elements were taken from W3 Schools/Boostrap Documentation and then modified by me.
+    Please widen your window to fit this comment block for optimal viewing.
+
+-------------------------------------------------------------------------------------------------------------   -->
+
+<!DOCTYPE html>
+<html>
+    <head>
+	<title>Hydrophobicity and Sorting</title>
+ 	<meta charset="utf-8">
+ 	
+	<!-- Used to set width of elements in context with device screen -->
+	<!-- Element needs to have "container" class -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  	
+	<!-- Necessary for Bootstrap elements -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	
+	<!-- Necessary for CanvasJS Chart elements -->
+	<script type="text/javascript" src="canvasjs.min.js"></script>
+
+	<!-- My javascript file -->
+	<script type="text/javascript" src = "HASP.js"></script>
+
+	<!-- Styling for the graph and table-->
+	<!-- Ideally I should probably have made a seperate file. As I learned different styling
+	elements as I was adding stuff, and as a result most styling is in the element tag. -->
+	<style>
+	    /* All of the following elements are for styling the loader circle */
+	    .loader {
+  	    	border:5px solid #f3f3f3;
+  	    	border-radius: 50%;
+  	    	border-top: 5px solid #6f737a;
+  	    	width: 50px;
+  	    	height: 50px;
+ 	    	float: center;
+  	    -webkit-animation: spin 1.5s linear infinite; /* Safari */
+  	    	animation: spin 1.5s linear infinite;
+	    }
+	    /* Safari */
+	    @-webkit-keyframes spin {
+  	    	0% { -webkit-transform: rotate(0deg); }
+  	    	100% { -webkit-transform: rotate(360deg); }
+	    }
+	    @keyframes spin {
+  	    	0% { transform: rotate(0deg); }
+  	    	100% { transform: rotate(360deg); }
+	    }
+	</style>
+    </head>
+  
+    <body>
+
+	<!-- Navbar -->
+	<nav class="navbar navbar-inverse navbar-fixed-top">
+  	    <div class="container-fluid">
+   		<div class="navbar-header">
+  		    <a class="navbar-brand" href="home.html">Home</a>
+    		</div>
+    		<ul class="nav navbar-nav">
+      		    <li><a href="composition.html">Essential Characterization</a></li>
+      		    <li><a href="HASP.html">Hydrophobicity/Sorting</a></li>
+      		    <li><a href="SSP.html">Helix/Sheet Prediction</a></li>
+    		</ul>
+  	    </div>
+	</nav>	
+
+	<!-- Container for description and instructions -->
+	<div class="container">
+	    
+	    <!-- Line breaks to position below navbar -->
+	    <br>
+	    <br>
+ 	    <br>
+ 	    <br>
+	    <br>
+
+	    <!-- Title sentence -->
+	    <b><font style="font-size:27px;">
+	    Hydrophobicity Analysis and Sorting Signal Prediction
+	    </font>
+	    <br>
+	    <br>
+
+	    <!-- Text content -->
+	    <font style="font-size:20px">
+	    This page will graph hydrophobicity scores along the protein. Positive values are residues with 
+	    higher hydrophobicity scores. Extended shaded segments could potentially be regions of interest. 
+	    Below will be any potential sorting signals from the predictive algorithms. 
+	    <br>
+	    <br>
+	    <font style="color:#3a6b46;">Methodology: </font>
+	    Hydrophobicity scores are assigned based on the 
+	    <a target="_blank" href="https://web.expasy.org/protscale/pscale/Hphob.Doolittle.html">
+		    Kyte-Doolittle scale</a>.
+	    Sorting signal sequences were adapted from <i>Molecular Biology of the Cell</i> (Garland Science) 
+	    and made more inclusive. I implemented the following search functions:</b>
+	    <ul style="font-size:18px">
+		<br>
+		<li>
+		<b>Nuclear Localization: </b>
+		Searches for any K-K/R-X-K/R segment where X is any amino acid. 
+		</li>
+		<li>
+		<b>Nuclear Export: </b>
+		Searches for any 10 residue segment that contains three leucines and one other hydrophobic
+		residue. 
+		</li>
+		<li>
+		<b>Mitochondrial Import: </b>
+		Searches the first 50 N-terminal residues for a 20 residue segement that contains minimum 
+		70% hydrophobic or basic residues. 
+		</li>
+		<li>
+		<b>ER Import/Secretion: </b>
+		Searches the first 25 N-terminal residues. As soon as 10 hydrophobic residues are found, 
+		the segment is recorded. 
+		</li>
+		<li>
+		<b>ER Return/Retention: </b>
+		Searches the first 8 C-terminal residues for the first K-D-E-L segment.		
+		</li>
+		<li>
+		<b>Peroxisome Targeting: </b>
+		Searches the first 6 C-terminal residues for the first S-K-L segment.		
+		</li>
+		<br>
+	    </ul><b>
+	    <font style="color:#3a6b46;">Usage: </font>
+	    Paste your sequence into the area below. If your sequence contains spaces or line breaks, please 
+	    use the clean button to tidy your sequence before analyzing. Please allow up to five minutes for data 
+	    to generate - especially for sequences longer than 500 residues. If your protein is longer than 250 
+	    residues, the graph will display the first 250 residues and you can use the controls at the top 
+	    right to move along the protein or reset. To zoom in on an area, select the area of interest on 
+	    the graph.
+	    </font></b>
+	</div>
+
+	<!-- Container for sequence input -->
+	<div class="container">
+	    <br>
+	    <form>
+    	        <div class="form-group">
+     		<label style="font-size:18px" for="comment">Enter Sequence: </label>
+		<textarea class="form-control" rows="5" id="sequence"></textarea>
+		<div class="btn-group" style="float:right; margin-top:1%">
+		    <button type="button" id ="cleanButton" class="btn btn-info">Clean</button>
+		    <button type="button" id ="analyzeButton" class="btn btn-primary">
+			    Analyze Sequence</button>
+		</div>
+		<br>
+
+		<!-- Loading circle. Initially hidden -->
+		<div class="container loader" id="loader" style="visibility:hidden"></div>
+   	        </div>
+ 	    </form>
+	</div>
+	<br>	
+	
+	<!-- Container for chart -->	
+	<div class="container" id="chartContainer" style="height: 400px;"></div>
+
+	<!-- Container for sorting signals-->
+	<div class="container" id="Sorting"></div>
+
+	<!-- Empty buffer at bottom of page -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+    </body>
+</html>
